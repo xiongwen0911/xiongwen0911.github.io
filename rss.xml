@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Xwen</title>
+        <subtitle>立志成为不断进步的人！</subtitle>
+        <icon>http://xwen2000.com/images/favicon.ico</icon>
+        <link>http://xwen2000.com</link>
+        <author>
+          <name>熊文</name>
+        </author>
+        <description>欢迎来到我的小世界！这是一个菜鸟的开始！</description>
+        <language>zh-CN</language>
+        <pubDate>Sat, 05 Nov 2022 22:14:57 +0800</pubDate>
+        <lastBuildDate>Sat, 05 Nov 2022 22:14:57 +0800</lastBuildDate>
+        <category term="ROS，Python" />
+        <item>
+            <guid isPermalink="true">http://xwen2000.com/2022/11/05/20221105/</guid>
+            <title>开始！</title>
+            <link>http://xwen2000.com/2022/11/05/20221105/</link>
+            <pubDate>Sat, 05 Nov 2022 22:14:57 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;这篇文章写在第一次建站当晚，很激动。其实我也知道按照&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9tYWktbnYtaGFpLWRlLXhpYW8taHVvLWNoYWktMzUtMTk=&#34;&gt;枫叶&lt;/span&gt;大佬的教程走完事实不算难，但是这对已经是研究生但是编程垃圾的要死的人来说，真的很兴奋。于是，在周六晚上，科技楼，导师让学的 ROS 又搁置了（bushi).&lt;br /&gt;
+ 算是一个开端吧，我每周会写一篇自己的学习日志，具体更新时间不定，希望能作为自己的一个档案馆，唯一心愿，希望十年后还在这里！&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
