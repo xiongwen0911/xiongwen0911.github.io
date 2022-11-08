@@ -173,7 +173,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/11/08/ROS%E5%9F%BA%E7%A1%80%E8%A1%A5%E5%85%85%E5%B8%B8%E8%AF%86/" class="post-title-link" itemprop="url">ROS基础补充尝试</a>
+            <a href="/2022/11/08/ROS%E5%9F%BA%E7%A1%80%E8%A1%A5%E5%85%85%E5%B8%B8%E8%AF%86/" class="post-title-link" itemprop="url">ROS基础补充</a>
         </h2>
 
         <div class="post-meta">
@@ -184,7 +184,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-11-08 20:24:00 / 修改时间：20:24:32" itemprop="dateCreated datePublished" datetime="2022-11-08T20:24:00+08:00">2022-11-08</time>
+              <time title="创建时间：2022-11-08 20:24:00 / 修改时间：20:28:48" itemprop="dateCreated datePublished" datetime="2022-11-08T20:24:00+08:00">2022-11-08</time>
             </span>
 
           <br>
@@ -193,7 +193,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>683</span>
+              <span>685</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -213,15 +213,15 @@
 
       
           <p><strong>题外话：</strong><br>
-早在 1920 年捷克斯洛伐克作家卡雷尔在他的科幻小说《罗萨母的机器人万能工厂》中提到，根据 Robota（捷克语：苦工）和 Robotnik（波兰语：工人）创造出机器人 Robot 这个词。<br>
-看到这个还是觉得挺讽刺的把！感性地说，我认为机器人更多是帮助，而不是劳役。<br>
-机器人系统包括执行机构、驱动系统、传感系统、控制系统<br>
+~ 早在 1920 年捷克斯洛伐克作家卡雷尔在他的科幻小说《罗萨母的机器人万能工厂》中提到，根据 Robota（捷克语：苦工）和 Robotnik（波兰语：工人）创造出机器人 Robot 这个词。<br>
+看到这个还是觉得挺讽刺的把！感性地说，我认为机器人更多是帮助，而不是劳役。~<br>
+ 机器人系统包括执行机构、驱动系统、传感系统、控制系统<br>
 执行机构类似于人类的手脚，可以进行一些执行动作<br>
 驱动系统则类似于人类的各类肌肉<br>
 传感系统则类似于人类的感官和神经，雷达、陀螺仪可能就类似与人类的空间感知和平衡能力，摄像头就类似与人类的眼睛…<br>
  控制系统则类似于人类的大脑<br>
-对于人类，失去任意一种” 系统 “可能都是致命的，对于机器人也是。</p>
-<p>MRobot 是一款基于 ROS 系统的差分轮式移动机器人，通常作为 ROS 的移动学习平台，通过三层玻璃纤维板以及主控板、主动轮、从动轮、直流电机组成。<br>
+对于人类，失去任意一种” 系统 “可能都是致命的，对于机器人也是。<br>
+MRobot 是一款基于 ROS 系统的差分轮式移动机器人，通常作为 ROS 的移动学习平台，通过三层玻璃纤维板以及主控板、主动轮、从动轮、直流电机组成。<br>
 主控板包括电源系统和电机系统以及部分拓展接口。内部传感系统主要包括编码器，依靠两个主动轮的移动圈数，测量里程、速度、角度等信息。<br>
 但是很明显 MRobot 缺乏控制系统，所以只能像傀儡一样移动，缺乏自己的思维，我们可通过串口拓展，加入外置的控制系统。<br>
 比如，使用 PC 作为单处理器，或者 PC + 嵌入式系统（其他外设）形成多处理器。<br>
@@ -269,10 +269,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-07 10:27:09 / 修改时间：10:46:14" itemprop="dateCreated datePublished" datetime="2022-11-07T10:27:09+08:00">2022-11-07</time>
+              <time title="创建时间：2022-11-07 10:27:09" itemprop="dateCreated datePublished" datetime="2022-11-07T10:27:09+08:00">2022-11-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-08 20:30:20" itemprop="dateModified" datetime="2022-11-08T20:30:20+08:00">2022-11-08</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -280,7 +286,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>886</span>
+              <span>922</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -299,7 +305,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="自定义话题消息附带服务数据"><a class="markdownIt-Anchor" href="#自定义话题消息附带服务数据">#</a> 自定义话题消息（附带服务数据）</h1>
+          <hr>
+<p>title: 自定义话题消息（附带服务数据）<br>
+date：November 8, 2022 8:29<br>
+tags: ROS</p>
 <hr>
 <p>在 ROS 中，由于自带的 std_msgs (标准数据类型)、geometry_msgs (几何数据类型)、sensor（传感器数据类型）等并不能完全满足自己设计机器人的特定场景，所以使用 msg 文件，这类与语言无关，只传内容的文件类型对消息进行传递。<br>
 在 msg 中，存储消息之前很多时候需要使用标准数据类型定义头信息 std_msgs/Header:</p>
