@@ -3,12 +3,59 @@
     <id>http://xwen2000.com</id>
     <title>Xwen</title>
     <link href="http://xwen2000.com" />
-    <updated>2022-11-05T14:14:57.000Z</updated>
+    <updated>2022-11-08T12:24:00.000Z</updated>
+    <category term="ROS" />
+    <entry>
+        <id>http://xwen2000.com/2022/11/08/ROS%E5%9F%BA%E7%A1%80%E8%A1%A5%E5%85%85%E5%B8%B8%E8%AF%86/</id>
+        <title>ROS基础补充尝试</title>
+        <link rel="alternate" href="http://xwen2000.com/2022/11/08/ROS%E5%9F%BA%E7%A1%80%E8%A1%A5%E5%85%85%E5%B8%B8%E8%AF%86/"/>
+        <content type="html">&lt;p&gt;&lt;strong&gt;题外话：&lt;/strong&gt;&lt;br&gt;
+早在 1920 年捷克斯洛伐克作家卡雷尔在他的科幻小说《罗萨母的机器人万能工厂》中提到，根据 Robota（捷克语：苦工）和 Robotnik（波兰语：工人）创造出机器人 Robot 这个词。&lt;br&gt;
+看到这个还是觉得挺讽刺的把！感性地说，我认为机器人更多是帮助，而不是劳役。&lt;br&gt;
+机器人系统包括执行机构、驱动系统、传感系统、控制系统&lt;br&gt;
+执行机构类似于人类的手脚，可以进行一些执行动作&lt;br&gt;
+驱动系统则类似于人类的各类肌肉&lt;br&gt;
+传感系统则类似于人类的感官和神经，雷达、陀螺仪可能就类似与人类的空间感知和平衡能力，摄像头就类似与人类的眼睛…&lt;br&gt;
+ 控制系统则类似于人类的大脑&lt;br&gt;
+对于人类，失去任意一种” 系统 “可能都是致命的，对于机器人也是。&lt;/p&gt;
+&lt;p&gt;MRobot 是一款基于 ROS 系统的差分轮式移动机器人，通常作为 ROS 的移动学习平台，通过三层玻璃纤维板以及主控板、主动轮、从动轮、直流电机组成。&lt;br&gt;
+主控板包括电源系统和电机系统以及部分拓展接口。内部传感系统主要包括编码器，依靠两个主动轮的移动圈数，测量里程、速度、角度等信息。&lt;br&gt;
+但是很明显 MRobot 缺乏控制系统，所以只能像傀儡一样移动，缺乏自己的思维，我们可通过串口拓展，加入外置的控制系统。&lt;br&gt;
+比如，使用 PC 作为单处理器，或者 PC + 嵌入式系统（其他外设）形成多处理器。&lt;br&gt;
+常用的嵌入式系统很多：树莓派、TK1、RK3288 等等。其中树莓派与 ROS 都同样更适配 Ubuntu 系统，所以我们可以通过树莓派运行 ROS，从而使得机器人具有一定的思维能力。&lt;br&gt;
+树莓派可以理解为一个简单的电脑主板，仅有一张信号用卡大小，但是却具有 PC 的基本功能。外接设备也可以完成 office、音乐、电影、游戏等基本功能。&lt;/p&gt;
+</content>
+        <category term="ROS" />
+        <updated>2022-11-08T12:24:00.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://xwen2000.com/2022/11/07/ROS%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B6%88%E6%81%AF/</id>
+        <title></title>
+        <link rel="alternate" href="http://xwen2000.com/2022/11/07/ROS%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B6%88%E6%81%AF/"/>
+        <content type="html">&lt;h1 id=&#34;自定义话题消息附带服务数据&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#自定义话题消息附带服务数据&#34;&gt;#&lt;/a&gt; 自定义话题消息（附带服务数据）&lt;/h1&gt;
+&lt;hr&gt;
+&lt;p&gt;在 ROS 中，由于自带的 std_msgs (标准数据类型)、geometry_msgs (几何数据类型)、sensor（传感器数据类型）等并不能完全满足自己设计机器人的特定场景，所以使用 msg 文件，这类与语言无关，只传内容的文件类型对消息进行传递。&lt;br&gt;
+在 msg 中，存储消息之前很多时候需要使用标准数据类型定义头信息 std_msgs/Header:&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;unit32 seq #消息的顺序标识无须手动设置&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;time stamp #time指时间，stamp指邮戳，是消息和数据关联的时间戳，用于时间同步&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;string frame_id #消息与数据相关联的参考坐标系id&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;此后需要对消息进行编译&lt;br&gt;
+ 1. 在 package.xml 添加功能包依赖&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;build_depend&amp;gt;message_generation&amp;lt;/build_depend&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;exec_depend&amp;gt;message_runtime&amp;lt;/exec_depend&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;2. 在 CMakelist.txt 中添加编译选项&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;find_package(... message_generation)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;add_message_files(FILES Person.msg)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;generate_messages(DEPENDENCIES std_mags)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;catkin_package(... message_runtime)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;[^ 注意：在更改时，一定要在现有代码上添加内容，不要直接复制，会导致程序报错。&lt;br&gt;
+配置好之后便可以利用 &lt;code&gt;rosmsg show 消息文件名&lt;/code&gt; 进行终端显示消息内容，也可以在 publisher 和 subscriber 两者之间进行交互。&lt;br&gt;
+msg 文件放在对应功能包目录的 msg 文件夹下]&lt;/p&gt;
+&lt;p&gt;对于话题数据而言，基本与 msg 无异，只是服务不仅仅包含将数据发布，更重视服务过程，因此在 srv 文件（服务数据文件）中使用 &amp;quot;—&amp;quot; 将请求和应答数据分割，但是内容类型和消息没有差异，客户端发布请求数据，服务端接收处理并返回应答数据。&lt;br&gt;
+同样的也需对数据进行编译，内容和上述消息编译没有差异。&lt;/p&gt;
+</content>
+        <updated>2022-11-07T02:27:09.130Z</updated>
+    </entry>
     <entry>
         <id>http://xwen2000.com/2022/11/05/20221105/</id>
         <title>开始！</title>
         <link rel="alternate" href="http://xwen2000.com/2022/11/05/20221105/"/>
-        <content type="html">&lt;p&gt;这篇文章写在第一次建站当晚，很激动。其实我也知道按照&lt;a href=&#34;https://www.zhihu.com/people/mai-nv-hai-de-xiao-huo-chai-35-19&#34;&gt;枫叶&lt;/a&gt;大佬的教程走完事实不算难，但是这对已经是研究生但是编程垃圾的要死的人来说，真的很兴奋。于是，在周六晚上，科技楼，导师让学的ROS又搁置了（bushi).&lt;br&gt;算是一个开端吧，我每周会写一篇自己的学习日志，具体更新时间不定，希望能作为自己的一个档案馆，唯一心愿，希望十年后还在这里！&lt;/p&gt;
+        <content type="html">&lt;p&gt;这篇文章写在第一次建站当晚，很激动。其实我也知道按照&lt;a href=&#34;https://www.zhihu.com/people/mai-nv-hai-de-xiao-huo-chai-35-19&#34;&gt;枫叶&lt;/a&gt;大佬的教程走完事实不算难，但是这对已经是研究生但是编程垃圾的要死的人来说，真的很兴奋。于是，在周六晚上，科技楼，导师让学的 ROS 又搁置了（bushi).&lt;br&gt;
+ 算是一个开端吧，我每周会写一篇自己的学习日志，具体更新时间不定，希望能作为自己的一个档案馆，唯一心愿，希望十年后还在这里！&lt;/p&gt;
 </content>
         <updated>2022-11-05T14:14:57.000Z</updated>
     </entry>

@@ -5,11 +5,29 @@
     "home_page_url": "http://xwen2000.com",
     "items": [
         {
+            "id": "http://xwen2000.com/2022/11/08/ROS%E5%9F%BA%E7%A1%80%E8%A1%A5%E5%85%85%E5%B8%B8%E8%AF%86/",
+            "url": "http://xwen2000.com/2022/11/08/ROS%E5%9F%BA%E7%A1%80%E8%A1%A5%E5%85%85%E5%B8%B8%E8%AF%86/",
+            "title": "ROS基础补充尝试",
+            "date_published": "2022-11-08T12:24:00.000Z",
+            "content_html": "<p><strong>题外话：</strong><br>\n早在 1920 年捷克斯洛伐克作家卡雷尔在他的科幻小说《罗萨母的机器人万能工厂》中提到，根据 Robota（捷克语：苦工）和 Robotnik（波兰语：工人）创造出机器人 Robot 这个词。<br>\n看到这个还是觉得挺讽刺的把！感性地说，我认为机器人更多是帮助，而不是劳役。<br>\n机器人系统包括执行机构、驱动系统、传感系统、控制系统<br>\n执行机构类似于人类的手脚，可以进行一些执行动作<br>\n驱动系统则类似于人类的各类肌肉<br>\n传感系统则类似于人类的感官和神经，雷达、陀螺仪可能就类似与人类的空间感知和平衡能力，摄像头就类似与人类的眼睛…<br>\n 控制系统则类似于人类的大脑<br>\n对于人类，失去任意一种” 系统 “可能都是致命的，对于机器人也是。</p>\n<p>MRobot 是一款基于 ROS 系统的差分轮式移动机器人，通常作为 ROS 的移动学习平台，通过三层玻璃纤维板以及主控板、主动轮、从动轮、直流电机组成。<br>\n主控板包括电源系统和电机系统以及部分拓展接口。内部传感系统主要包括编码器，依靠两个主动轮的移动圈数，测量里程、速度、角度等信息。<br>\n但是很明显 MRobot 缺乏控制系统，所以只能像傀儡一样移动，缺乏自己的思维，我们可通过串口拓展，加入外置的控制系统。<br>\n比如，使用 PC 作为单处理器，或者 PC + 嵌入式系统（其他外设）形成多处理器。<br>\n常用的嵌入式系统很多：树莓派、TK1、RK3288 等等。其中树莓派与 ROS 都同样更适配 Ubuntu 系统，所以我们可以通过树莓派运行 ROS，从而使得机器人具有一定的思维能力。<br>\n树莓派可以理解为一个简单的电脑主板，仅有一张信号用卡大小，但是却具有 PC 的基本功能。外接设备也可以完成 office、音乐、电影、游戏等基本功能。</p>\n",
+            "tags": [
+                "ROS"
+            ]
+        },
+        {
+            "id": "http://xwen2000.com/2022/11/07/ROS%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B6%88%E6%81%AF/",
+            "url": "http://xwen2000.com/2022/11/07/ROS%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B6%88%E6%81%AF/",
+            "title": "",
+            "date_published": "2022-11-07T02:27:09.130Z",
+            "content_html": "<h1 id=\"自定义话题消息附带服务数据\"><a class=\"markdownIt-Anchor\" href=\"#自定义话题消息附带服务数据\">#</a> 自定义话题消息（附带服务数据）</h1>\n<hr>\n<p>在 ROS 中，由于自带的 std_msgs (标准数据类型)、geometry_msgs (几何数据类型)、sensor（传感器数据类型）等并不能完全满足自己设计机器人的特定场景，所以使用 msg 文件，这类与语言无关，只传内容的文件类型对消息进行传递。<br>\n在 msg 中，存储消息之前很多时候需要使用标准数据类型定义头信息 std_msgs/Header:</p>\n<figure class=\"highlight plaintext\"><table><tr><td class=\"gutter\"><pre><span class=\"line\">1</span><br><span class=\"line\">2</span><br><span class=\"line\">3</span><br><span class=\"line\">4</span><br></pre></td><td class=\"code\"><pre><span class=\"line\">unit32 seq #消息的顺序标识无须手动设置</span><br><span class=\"line\">time stamp #time指时间，stamp指邮戳，是消息和数据关联的时间戳，用于时间同步</span><br><span class=\"line\">string frame_id #消息与数据相关联的参考坐标系id</span><br><span class=\"line\"></span><br></pre></td></tr></table></figure>\n<p>此后需要对消息进行编译<br>\n 1. 在 package.xml 添加功能包依赖</p>\n<figure class=\"highlight plaintext\"><table><tr><td class=\"gutter\"><pre><span class=\"line\">1</span><br><span class=\"line\">2</span><br></pre></td><td class=\"code\"><pre><span class=\"line\">&lt;build_depend&gt;message_generation&lt;/build_depend&gt;</span><br><span class=\"line\">&lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;</span><br></pre></td></tr></table></figure>\n<p>2. 在 CMakelist.txt 中添加编译选项</p>\n<figure class=\"highlight plaintext\"><table><tr><td class=\"gutter\"><pre><span class=\"line\">1</span><br><span class=\"line\">2</span><br><span class=\"line\">3</span><br><span class=\"line\">4</span><br><span class=\"line\">5</span><br></pre></td><td class=\"code\"><pre><span class=\"line\">find_package(... message_generation)</span><br><span class=\"line\">add_message_files(FILES Person.msg)</span><br><span class=\"line\">generate_messages(DEPENDENCIES std_mags)</span><br><span class=\"line\">catkin_package(... message_runtime)</span><br><span class=\"line\"></span><br></pre></td></tr></table></figure>\n<p>[^ 注意：在更改时，一定要在现有代码上添加内容，不要直接复制，会导致程序报错。<br>\n配置好之后便可以利用 <code>rosmsg show 消息文件名</code> 进行终端显示消息内容，也可以在 publisher 和 subscriber 两者之间进行交互。<br>\nmsg 文件放在对应功能包目录的 msg 文件夹下]</p>\n<p>对于话题数据而言，基本与 msg 无异，只是服务不仅仅包含将数据发布，更重视服务过程，因此在 srv 文件（服务数据文件）中使用 &quot;—&quot; 将请求和应答数据分割，但是内容类型和消息没有差异，客户端发布请求数据，服务端接收处理并返回应答数据。<br>\n同样的也需对数据进行编译，内容和上述消息编译没有差异。</p>\n",
+            "tags": []
+        },
+        {
             "id": "http://xwen2000.com/2022/11/05/20221105/",
             "url": "http://xwen2000.com/2022/11/05/20221105/",
             "title": "开始！",
             "date_published": "2022-11-05T14:14:57.000Z",
-            "content_html": "<p>这篇文章写在第一次建站当晚，很激动。其实我也知道按照<a href=\"https://www.zhihu.com/people/mai-nv-hai-de-xiao-huo-chai-35-19\">枫叶</a>大佬的教程走完事实不算难，但是这对已经是研究生但是编程垃圾的要死的人来说，真的很兴奋。于是，在周六晚上，科技楼，导师让学的ROS又搁置了（bushi).<br>算是一个开端吧，我每周会写一篇自己的学习日志，具体更新时间不定，希望能作为自己的一个档案馆，唯一心愿，希望十年后还在这里！</p>\n",
+            "content_html": "<p>这篇文章写在第一次建站当晚，很激动。其实我也知道按照<a href=\"https://www.zhihu.com/people/mai-nv-hai-de-xiao-huo-chai-35-19\">枫叶</a>大佬的教程走完事实不算难，但是这对已经是研究生但是编程垃圾的要死的人来说，真的很兴奋。于是，在周六晚上，科技楼，导师让学的 ROS 又搁置了（bushi).<br>\n 算是一个开端吧，我每周会写一篇自己的学习日志，具体更新时间不定，希望能作为自己的一个档案馆，唯一心愿，希望十年后还在这里！</p>\n",
             "tags": []
         }
     ]
